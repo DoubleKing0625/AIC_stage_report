@@ -1,58 +1,70 @@
 %% Copyright (C) 2008 Johan Oudinet <oudinet@lri.fr>
-%%  
+%%
 %% Permission is granted to make and distribute verbatim copies of
 %% this manual provided the copyright notice and this permission notice
 %% are preserved on all copies.
-%%  
+%%
 %% Permission is granted to process this file through TeX and print the
 %% results, provided the printed document carries copying permission
 %% notice identical to this one except for the removal of this paragraph
 %% (this paragraph not being relevant to the printed manual).
-%%  
+%%
 %% Permission is granted to copy and distribute modified versions of this
 %% manual under the conditions for verbatim copying, provided that the
-%% entire resulting derived work is distributed under the terms of a 
+%% entire resulting derived work is distributed under the terms of a
 %% permission notice identical to this one.
-%%  
+%%
 %% Permission is granted to copy and distribute translations of this manual
 %% into another language, under the above conditions for modified versions,
 %% except that this permission notice may be stated in a translation
 %% approved by the Free Software Foundation
-%%  
-\chapter{Introduction}
+%%
+\chapter{Introduction to Company and Team}
 \label{sec:intro}
 
-Post emensos insuperabilis expeditionis eventus languentibus partium
-animis, quas periculorum varietas fregerat et laborum, nondum tubarum
-cessante clangore vel milite locato per stationes hibernas, fortunae
-saevientis procellae tempestates alias rebus infudere communibus per
-multa illa et dira facinora Caesaris Galli, qui ex squalore imo
-miseriarum in aetatis adultae primitiis ad principale culmen insperato
-saltu provectus ultra terminos potestatis delatae procurrens
-asperitate nimia cuncta foedabat. propinquitate enim regiae stirpis
-gentilitateque etiam tum Constantini nominis efferebatur in fastus, si
-plus valuisset, ausurus hostilia in auctorem suae felicitatis, ut
-videbatur.
-
-\section{Eo adducta re per Isauriam}
+\section{Company Introduction}
 \label{sec:isauriam}
 
-Eo adducta re per Isauriam, rege Persarum bellis finitimis inligato
-repellenteque a conlimitiis suis ferocissimas gentes, quae mente
-quadam versabili hostiliter eum saepe incessunt et in nos arma
-moventem aliquotiens iuvant, Nohodares quidam nomine e numero
-optimatum, incursare Mesopotamiam quotiens copia dederit ordinatus,
-explorabat nostra sollicite, si repperisset usquam locum vi subita
-perrupturus.
+Founded in October 2011, Megvii is an Articial Intelligence company specialized in providing enterprises and developers with intelligent solutions and data services,
+and is dedicated to the mission of “Create machines that can see and think”.
+With the "cloud + end" system of Megvii Cloud and Megvii SensorNet as its core products, Mevgii has successfully offered solutions for over 800 enterprises in nance, security,
+office, real estate and other business sectors.
 
-Batnae municipium in Anthemusia conditum Macedonum manu priscorum ab
-Euphrate flumine brevi spatio disparatur, refertum mercatoribus
-opulentis, ubi annua sollemnitate prope Septembris initium mensis ad
-nundinas magna promiscuae fortunae convenit multitudo ad commercanda
-quae Indi mittunt et Seres aliaque plurima vehi terra marique
-consueta.
+Megvii holds more than 350 domestic and international patents. Over seven years of development, Megvii has gathered a workforce of over 1000 people, among whom more than 70\% are R&D stas. The core team of Megvii is composed of top geeks
+who are alumni of universities like Tsinghua, Columbia, Oxford, etc., and adventurers formerly working for Google, Alibaba, Huawei and IBM.
+Over 80 people in Megvii have been awarded golden prizes of informatics at national and international levels.
+Research teams from Megvii have been and are holding the first places in more than ten international AI benchmarks.
 
-%%% Local Variables: 
+The name ’Megvii’ is from mega vision, which means our work is concentrated on offering computer vision technologies that enable your applications to read and
+understand the world better.
+In fact, FACE++, the best product of megvii, now, is the biggest platform of face detection over the world.
+
+Here is the link to official website: https://www.faceplusplus.com/
+
+
+\section{Team Introduction}
+\label{sec:isauriam}
+
+During the internship, I worked in Detection Team in Megvii Research.
+The team leader is Gang YU\footnote{His google scholar is: https://scholar.google.com/citations?user=BJdigYsAAAAJ&hl=en}.
+
+In general, our team is in charge of 4 main issues:
+\begin{enumerate}
+  \item{\textbf{Detection: }} Face Detection, Pedestrian/human Detection, Vehicle/Plate Detection, General Object Detection, Object Detection in Video, 3D Object detection (combined with Point Cloud)
+  \item{\textbf{Segmentation: }} Semantic Segmentation, Instance Segmentation, Panoptic Segmentation, Video Segmentation, 3D Segmentation
+  \item{\textbf{Skeleton: }} Human Pose Estimation, Hand Pose Estimation
+  \item{\textbf{Action: }} Action Recognition in Video
+\end{enumerate}
+
+Our team has a solid technical accumulation, especially in the detection aspect. We have the winner solution of COCO2017 Detection:  MegDet\cite{peng2018megdet}.
+From a product perspective, we built a small repo of imagenet base model for training and exploring models with less than 100M FLOPs.
+In addition to Detection, our skeleton solution also took the first in the COCO2017 Human Pose competition: CPN\cite{chen2017cascaded}.
+In terms of Segmentation, we also have some better work published. In addition, we have sufficient GPU resources, as well as very large internal data sets for exploring the upper-bound of various research tasks.
+
+
+
+
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "rapportM2R"
-%%% End: 
+%%% End:

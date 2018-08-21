@@ -1,33 +1,33 @@
 %% Template pour rapport de stage du master AIC (Apprentissage,
-%% Information et Contenu), Université Paris-Saclay
-%% Template d'origine : 
+%% Information et Contenu), Universitï¿½ Paris-Saclay
+%% Template d'origine :
 %% Copyright (C) 2008 Johan Oudinet <oudinet@lri.fr>
-%%  
+%%
 %% Permission is granted to make and distribute verbatim copies of
 %% this manual provided the copyright notice and this permission notice
 %% are preserved on all copies.
-%%  
+%%
 %% Permission is granted to process this file through TeX and print the
 %% results, provided the printed document carries copying permission
 %% notice identical to this one except for the removal of this paragraph
 %% (this paragraph not being relevant to the printed manual).
-%%  
+%%
 %% Permission is granted to copy and distribute modified versions of this
 %% manual under the conditions for verbatim copying, provided that the
-%% entire resulting derived work is distributed under the terms of a 
+%% entire resulting derived work is distributed under the terms of a
 %% permission notice identical to this one.
-%%  
+%%
 %% Permission is granted to copy and distribute translations of this manual
 %% into another language, under the above conditions for modified versions,
 %% except that this permission notice may be stated in a translation
 %% approved by the Free Software Foundation
-%%  
+%%
 
 \documentclass[oneside]{memoir}
 \input{definition}
 
 
-\usepackage[latin1]{inputenc}
+\usepackage[english]{inputenc}
 \usepackage{epsfig}
 \usepackage{acronym}
 \usepackage{amssymb}
@@ -40,21 +40,27 @@
 \usepackage[colorlinks]{hyperref}
 \usepackage[all]{hypcap}
 \usepackage{algorithm, algorithmic}
-\usepackage[french]{babel}
+\usepackage[english]{babel}
 \usetikzlibrary{shapes,arrows,automata,backgrounds}
 \usepackage{wrapfig}
 \usepackage{microtype}
 \usepackage{multicol}
+\usepackage{cite}
+\usepackage{indentfirst}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subfigure}
 % \usepackage[T1]{fontenc}
 
-\input{french_stuff}
+% \input{french_stuff}
 %% Page layout
 \setlength{\oddsidemargin}{1cm}
 \setlength{\evensidemargin}{1.5cm}
 \setlength{\topmargin}{0cm}
 \setlength{\textheight}{21cm}
 \setlength{\textwidth}{15cm}
-
+\setlength{\parindent}{2em}
 % \setlength{\beforeschapskip}{-2cm}
 
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
@@ -62,12 +68,12 @@
 \begin{document}
 
 \begin{titlingpage}
- 
+
 \begin{center}
- 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% LOGOS: 
-% 
+% LOGOS:
+%
 \includegraphics[height=2cm]{logos/upsay.pdf} \hfill % Paris-Saclay: Don't remove !
 \includegraphics[height=2cm]{logos/ups.png} % Your school inside Paris-Saclay
 \\[1.5cm]
@@ -87,44 +93,44 @@
 \end{minipage}
 
 
-\vspace{2cm} 
-\textsc{\Large Stage de Master 2 Recherche en Informatique}\\[0.5cm]
- 
- 
+\vspace{2cm}
+\textsc{\Large Internship of Research Master 2 in Computer Science}\\[0.5cm]
+
+
 % Title
 \HRule \\[0.4cm]
-{ \huge \bfseries Titre du sujet du stage}\\[0.4cm]
- 
+{ \huge \bfseries Work on COCO 2018 Keypoint Detection Task}\\[0.4cm]
+
 \HRule \\[1.5cm]
- 
+
 % Author and supervisor
 \begin{minipage}{0.4\textwidth}
 \begin{flushleft} \large
-\emph{Auteur :}\\
-Prénom \textsc{Nom}
+\emph{Author :}\\
+Qixiang \textsc{PENG}
 \end{flushleft}
 \end{minipage}
 \begin{minipage}{0.4\textwidth}
 \begin{flushright} \large
-\emph{Responsable de stage :} \\
-Dr. Prénom \textsc{Nom}
+\emph{Stage chief :} \\
+Dr. Gang \textsc{YU}
 \end{flushright}
 \end{minipage}
 \vfill
-\emph{Organisme d'accueil : }\\
-Laboratoire Truc
+\emph{Host organization : }
+Megvii Research
 
- 
+
 \vfill
 
 
- 
+
 % Bottom of the page
-{Secrétariat - tél : 01 69 15 81 58\\
-courrier électronique : alexandre.verrecchia@u-psud.fr\\
-} 
+{Secretariat - tel : 01 69 15 81 58\\
+Email Address: alexandre.verrecchia@u-psud.fr\\
+}
 \end{center}
- 
+
 \end{titlingpage}
 
 
@@ -136,37 +142,47 @@ courrier électronique : alexandre.verrecchia@u-psud.fr\\
 \thispagestyle{empty}%
 \newpage
 
-\chapter*{Résumé}
+\chapter*{Abstract}
 
-Post hoc impie perpetratum quod in aliis quoque iam timebatur, tamquam
-licentia crudelitati indulta per suspicionum nebulas aestimati quidam
-noxii damnabantur. quorum pars necati, alii puniti bonorum multatione
-actique laribus suis extorres nullo sibi relicto praeter querelas et
-lacrimas, stipe conlaticia victitabant, et civili iustoque imperio ad
-voluntatem converso cruentam, claudebantur opulentae domus et
-clarae~\cite{ammianius42}.
+This report summarizes my internship in Megvii Research: Work on COCO 2018 Keypoint Detection Task\footnote{ More detail about this challenge can be found in https://competitions.codalab.org/competitions/12061}.
+This challenge is designed to push the state of the art in multi-person pose estimation.
 
-\section*{Mots clefs}
-Post, impie, aliis, multatione, domus.
+The topic of multi-person pose estimation has been largely improved recently, especially with the development of convolutional neural network.
+However, there still exist a lot of challenging cases, such as occluded keypoints, invisible keypoints and complex background.
 
-\pagebreak
+Nowadays, two solutions are adopted widely: Bottom-Up approaches and Top-Down approaches. In this challenge, our team proposed a novel top-down method.
+
+
+\section*{Keywords}
+COCO 2018 Keypoint Detection, human pose estimation, top-down.
+
+%\pagebreak
 
 \pagenumbering{arabic}
 \setcounter{page}{1}
 
 \input{intro}
 
+\input{problem_intro}
+
 \input{conclu}
 
-\chapter*{Remerciements}
-Saraceni tamen nec amici nobis umquam nec hostes optandi, ultro
-citroque discursantes quicquid inveniri poterat momento temporis parvi
-vastabant milvorum rapacium similes, qui si praedam dispexerint
-celsius, volatu rapiunt celeri, aut nisi impetraverint, non
-inmorantur.
+\chapter*{Acknowledgement}
+At last, i would like to point out that i couldnâ€™t nish this internship
+successfully without someones, and here i give my most sincere thanks to them.
+Firstly, i will express thanks to Zhicheng WANG, one of my team leader. Itâ€™s him
+that taught me the basic knowledge of DL, like CNN, Resnet, frameworks, etc. He
+also explained papers to me clearly and carefully. In fact, he leads me into the domain
+CV&DL.
+Next, iwould like to thank for Gang YU, my another team leader. During August,
+i did some research work about SOT(single object tracking), which is supervised by
+him. He gave me lots of help, like correcting my wrong opinions and reviewing my
+codes.
+Finally but with same importance, my colleagues helped me a lot when i encountered
+some problems about software or hardware, i will always appreciate that.
 
 \bibliographystyle{plain}
-\bibliography{rapportM2R}
+\bibliography{rapport_m2_AIC}
 
 \appendix
 
@@ -175,7 +191,7 @@ inmorantur.
 \end{document}
 
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "rapportM2R"
-%%% End: 
+%%% End:
