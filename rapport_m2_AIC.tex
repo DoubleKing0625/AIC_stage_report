@@ -50,8 +50,25 @@
 
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{caption}
 \usepackage{subfigure}
+\usepackage{listings}
 % \usepackage[T1]{fontenc}
+
+\lstset{
+ columns=fixed,
+ numbers=left,                                        % 在左侧显示行号
+ numberstyle=\tiny\color{gray},                       % 设定行号格式
+ frame=none,                                          % 不显示背景边框
+ backgroundcolor=\color[RGB]{245,245,244},            % 设定背景颜色
+ keywordstyle=\color[RGB]{40,40,255},                 % 设定关键字颜色
+ numberstyle=\footnotesize\color{darkgray},
+ commentstyle=\color[RGB]{0,96,96},                % 设置代码注释的格式
+ stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},   % 设置字符串格式
+ showstringspaces=false,                              % 不显示字符串中的空格
+ language=c++,                                        % 设置语言
+}
+
 
 % \input{french_stuff}
 %% Page layout
@@ -81,16 +98,18 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Your specific logos (labs, companies, .... )
-\begin{minipage}{0.2\textwidth}
-  \begin{flushright}
-    \includegraphics[width=0.6\textwidth]{logos/limsi.png}
-  \end{flushright}
-\end{minipage}
-\begin{minipage}{0.2\textwidth}
-  \begin{flushright}
-    \includegraphics[width=0.5\textwidth]{logos/lri.png}
-  \end{flushright}
-\end{minipage}
+% \begin{minipage}{0.2\textwidth}
+%   \centering
+%   \begin{flushright}
+%     \includegraphics[width=1.6\textwidth]{logos/face++.jpeg}
+%   \end{flushright}
+% \end{minipage}
+
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=3in]{logos/face++.jpeg}
+\end{figure}
 
 
 \vspace{2cm}
