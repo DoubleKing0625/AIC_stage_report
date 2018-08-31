@@ -45,6 +45,7 @@
 \usepackage{wrapfig}
 \usepackage{microtype}
 \usepackage{multicol}
+\usepackage{multirow}
 \usepackage{cite}
 \usepackage{indentfirst}
 
@@ -57,7 +58,7 @@
 
 \lstset{
  columns=fixed,
- numbers=left,                                        % 在左侧显示行号
+ %numbers=left,                                        % 在左侧显示行号
  numberstyle=\tiny\color{gray},                       % 设定行号格式
  frame=none,                                          % 不显示背景边框
  backgroundcolor=\color[RGB]{245,245,244},            % 设定背景颜色
@@ -72,6 +73,9 @@
 
 % \input{french_stuff}
 %% Page layout
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{1}
+
 \setlength{\oddsidemargin}{1cm}
 \setlength{\evensidemargin}{1.5cm}
 \setlength{\topmargin}{0cm}
@@ -169,11 +173,17 @@ This challenge is designed to push the state of the art in multi-person pose est
 The topic of multi-person pose estimation has been largely improved recently, especially with the development of convolutional neural network.
 However, there still exist a lot of challenging cases, such as occluded keypoints, invisible keypoints and complex background.
 
-Nowadays, two solutions are adopted widely: Bottom-Up approaches and Top-Down approaches. In this challenge, our team proposed a novel top-down method.
+Nowadays, two solutions are adopted widely: Bottom-Up approaches and Top-Down approaches.
+In this challenge, our team proposed a novel multi-stage top-down method.
+More specifically, each stage is based on the Resnet and the later stage will pay more attention to the harder pose samples.
 
+Based on the proposed algorithm, we achieve state-of-art results on the COCO keypoint benchmark, with average
+precision at $77.8\%$ mAp on the COCO test-dev dataset and $76.4\%$ on the COCO test-challenge dataset, which is a $4.8\%$ mAp
+relative improvement compared with $73.0\%$ from the COCO 2017 keypoint challenge.
 
+Our team was invited to make a presentation in ECCV2018, September 8 - 14 in Munich, Germany\footnote{More detail about the conference can be found in https://eccv2018.org/}.
 \section*{Keywords}
-COCO 2018 Keypoint Detection, human pose estimation, top-down.
+COCO 2018 Keypoint Detection, human pose estimation, multi-stage, top-down.
 
 %\pagebreak
 
@@ -184,21 +194,13 @@ COCO 2018 Keypoint Detection, human pose estimation, top-down.
 
 \input{problem_intro}
 
+\input{solution}
+
+\input{experiment}
+
 \input{conclu}
 
-\chapter*{Acknowledgement}
-At last, i would like to point out that i couldn’t nish this internship
-successfully without someones, and here i give my most sincere thanks to them.
-Firstly, i will express thanks to Zhicheng WANG, one of my team leader. It’s him
-that taught me the basic knowledge of DL, like CNN, Resnet, frameworks, etc. He
-also explained papers to me clearly and carefully. In fact, he leads me into the domain
-CV&DL.
-Next, iwould like to thank for Gang YU, my another team leader. During August,
-i did some research work about SOT(single object tracking), which is supervised by
-him. He gave me lots of help, like correcting my wrong opinions and reviewing my
-codes.
-Finally but with same importance, my colleagues helped me a lot when i encountered
-some problems about software or hardware, i will always appreciate that.
+\input{acknowledgement}
 
 \bibliographystyle{plain}
 \bibliography{rapport_m2_AIC}

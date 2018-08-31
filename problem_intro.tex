@@ -19,7 +19,7 @@
 %% except that this permission notice may be stated in a translation
 %% approved by the Free Software Foundation
 %%
-\chapter{Presentation of the context of the task}
+\chapter{Human Pose Estimation and COCO dataset}
 \label{sec:intro}
 In this chapter, several brief presentations will be given to explain the context of the human pose estimation and describe the COCO dataset.
 
@@ -47,7 +47,7 @@ Nowadays there exists two main topics in human pose estimation: single person po
   \subfigure[Multi-person pose estimation]{
     \label{fig:subfig:b} %% label for second subfigure
     \includegraphics[width=5cm,height=4cm]{source/multi.png}}
-  \caption{Figure 1:(a) is the example of single person pose estimation, only one person in a image. (b) is the example of multi-persion pose
+  \caption{Figure 1: Human Pose Estimation. (a) is the example of single person pose estimation, only one person in a image. (b) is the example of multi-persion pose
   estimation. An image includes several peoples. We need to detect all the keypoints and group them into the right person ID.}
   \label{fig:1} %% label for entire figure
 \end{figure}
@@ -88,22 +88,95 @@ These detection approaches are composed of two-stage in general.
 First generate boxes proposals based on default anchors, and then crop from the feature map and further refine the proposals to get the final boxes via R-CNN network.
 
 
-\section{COCO dataset and metric}
+\section{COCO dataset}
 
 COCO\cite{lin2014microsoft} is a large-scale object detection, segmentation, and captioning dataset\footnote{More details about COCO dataset can be found in http://cocodataset.org/}.
 For different tasks like object detection, keypoint detection, stuff segmentaion, etc, COCO dataset can be seperated as different sub-datasets.
 Here we only introduce the human keypoint dataset.
 
+
+\subsection{Dataset statistic}
+The coco keypoint dataset was split up into 3 parts: train-set, validation-set, test-set.
+And test-set is further divided into 2 parts: test-dev for evaluating the model in the usual time and test-challenge for evaluating the model during the competition.
+It should be noted here that only labels of train-set and validation-set are available.
+In order to extend the train-set, we extracted a small subset of the validation-set called mini-val for evaluating our model,
+and the rest of validation-set and train-set merged into one larger train-set called train-val.
+
+\captionsetup[table]{labelformat=empty}
+\begin{table}[!hbp]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|c|}
+  \hline
+            & train-set & validation-set & test-dev & test-challenge & train-val & mini-val \\
+  \hline
+  images numbers & 39935 & 19010 & 20000 & 20000 & 56599 & 2346\\
+  \hline
+  instances numbers & 105968 & 50197 & unknown & unknown & 149813 & 6352\\
+  \hline
+  keypoints numbers & 1161667  & 548831 & unknown & unknown & 1642283 & 68215\\
+  \hline
+  \end{tabular}
+  \caption{Table 1: The statistics of datasets}
+\end{table}
+
 \subsection{Annotation format}
 
-Each person(instance) annotations contains a series of fields. \textbf{1.} image\_id: Indicates which images this person belongs to. \textbf{2.} bbox: Indicates the location of this person in the image.
-\textbf{3.} keypoints: a is a length 3*17 array, indicates the details of the keypoints. Each keypoint has a 0-indexed location x,y and a visibility flag v defined as v=0: not labeled (in which case x=y=0), v=1: labeled but not visible, and v=2: labeled and visible.
+Each person(instance) annotations contains a series of fields. \textbf{1.} id: Indicates the global id of this instance. \textbf{2.} image\_id: Indicates which images this person belongs to. \textbf{3.} bbox: Indicates the location of this person in the image.
+\textbf{4.} keypoints: A length 3*17 array, indicates the details of the keypoints. Each keypoint has a 0-indexed location x,y and a visibility flag v defined as v=0: not labeled (in which case x=y=0), v=1: labeled but not visible, and v=2: labeled and visible.
+\textbf{5.} s: Indicates the square root of the object segment area.
 
 There are 17 keypoints: 0: nose, 1: left eye, 2: right eye, 3: left ear, 4: right ear, 5: left shoulder, 6: right shoulder, 7: left elbow, 8: right elbow, 9: left wrist, 10: right wrist, 11: left hip, 12: right hip, 13: left knee, 14: right knee, 15: left ankle, 16: right ankle.
 
 \begin{lstlisting}
-int a  = b;
+annotation{
+  "id" : int,
+  "image_id" : int,
+  "bbox" : [x, y, weight, height],
+  // x, y is the coordinate of the top-left point of the bbox.
+  "keypoints" : [x1, y1, v1, ...]
+  "s" : float
+}
 \end{lstlisting}
+
+\subsection{Metric}
+
+The core idea behind evaluating keypoint detection is to mimic the evaluation metrics used for object detection, namely average precision (AP) and average recall (AR) and their variants.
+At the heart of these metrics is a similarity measure between ground truth objects and predicted objects.
+In the case of object detection, the IoU(Intersection over Union) serves as this similarity measure (for both boxes and segments).
+Thesholding the IoU defines matches between the ground truth and predicted objects and allows computing precision-recall curves.
+To adopt AP/AR for keypoints detection, we only need to define an analogous similarity measure.
+Here an object keypoint similarity (OKS) which plays the same role as the IoU.
+
+As mentioned before, for each object, ground truth keypoints have the form $[x_{1},y_{1},v_{1},...,x_{k},y_{k},v_{k}]$, where x,y are the keypoint locations and v is a visibility flag defined as v=0: not labeled, v=1: labeled but not visible, and v=2: labeled and visible.
+Each ground truth object also has a scale s which is defined as the square root of the object segment area.
+
+For each object, the keypoint detector must output keypoint locations and an object-level confidence.
+Predicted keypoints for an object should have the same form as the ground truth: $[x_{1},y_{1},v_{1},...,x_{k},y_{k},v_{k}]$.
+However, the detector's predicted $v_{i}$ are not currently used during evaluation, that is the keypoint detector is not required to predict per-keypoint visibilities or confidences.
+
+The object keypoint similarity (OKS) is defined as:
+
+\[ OKS =  \frac{\sum_{i}[exp(-d_{i}^{2} / 2s^{2}k_{i}^{2}) \delta (v_{i}>0)]}{\sum_{i} [\delta(v_{i}>0)]} ...................(1) \]
+
+The $d_{i}$ are the Euclidean distances between each corresponding ground truth and detected keypoint and the $v_{i}$ are the visibility flags of the ground truth (the detector's predicted $v_{i}$ are not used).
+To compute OKS, we pass the $d_{i}$ through an unnormalized Guassian with standard deviation $sk_{i}$, where s is the object scale and $k_{i}$ is a per-keypont constant that controls falloff.
+For each keypoint this yields a keypoint similarity that ranges between 0 and 1.
+These similarities are averaged over all labeled keypoints (keypoints for which $v_{i}>0$).
+Predicted keypoints that are not labeled ($v_{i}=0$) do not affect the OKS.
+Perfect predictions will have OKS=1 and predictions for which all keypoints are off by more than a few standard deviations sκi will have OKS~0.
+The OKS is analogous to the IoU.
+Given the OKS, we can compute AP and AR just as the IoU allows us to compute these metrics for box/segment detection.
+
+The final metric for COCO keypoint dataset is shown as below:
+
+\captionsetup[figure]{labelformat=empty}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=16cm,height=6cm]{source/metric.png}
+  \caption{Figure 2: The final metrics for COCO keypoint task. }
+\end{figure}
+
+
 
 
 %%% Local Variables:
