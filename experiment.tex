@@ -43,7 +43,7 @@ We train the model for 400 epochs and each epoch contains 90000 samples.
 Note that we decrease the learning rate linearly decrease during the whole training process.
 We use a weight decay of 1e5 and the training batch size is 32.
 Batch normalization is used in our network.
-Generally, the training of 3 ResNet-50-based models takes about 5 days on eight NVIDIA Titan X Pascal GPUs.
+Generally, the training of 4 ResNet-50-based models takes about 5 days on eight NVIDIA Titan X Pascal GPUs.
 
 \subsection{Testing Details}
 In order to minimize the variance of prediction, we apply a gaussian filter on the predicted heatmaps.
@@ -137,7 +137,9 @@ input size.
   \caption{Table 5: Comparison of models of different input size. 4xres50* indicates 4xres50 without online hard keypoints mining.}
 \end{table}
 
-At the end, we use ensemble on the heatmap level to get the final and best results.
+\subsection{Ensemble on Heatmap}
+
+At the end, we use ensemble on the heatmap level to get the best results.
 
 \captionsetup[table]{labelformat=empty}
 \begin{table}[!hbp]
@@ -154,6 +156,17 @@ At the end, we use ensemble on the heatmap level to get the final and best resul
   \caption{Table 6: Comparison of results on the minvival dataset and the corresponding results on test-dev or test-challenge of the COCO
 dataset. “+” indicates ensembled model.}
 \end{table}
+
+\captionsetup[figure]{labelformat=empty}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=16cm,height=8cm]{source/result.png}
+  \caption{Figure 9: Some results of our method.}
+\end{figure}
+
+
+
+
 
 
 %%% Local Variables:

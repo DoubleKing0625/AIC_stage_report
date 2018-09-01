@@ -27,7 +27,7 @@ In this chapter, several brief presentations will be given to explain the contex
 \label{sec:isauriam}
 Localizing body parts for human body is a fundamental yet challenging task in computer vision, and it serves as an important basis for high-level vision tasks, e.g., activity
 recognition\cite{yang2010recognizing, wang2013approach}, human re-identification\cite{zheng2017pose}, and human-computer interaction.
-In general，a human pose estimation model aims to predict the 2D coordinates of different human parts given a 2D human image.
+In general, a human pose estimation model aims to predict the 2D coordinates of different human parts given a 2D human image.
 Achieving accurate localization, however, is difficult due to the highly articulated human body limbs, occlusion, change of viewpoint, and foreshortening.
 
 Classical approaches tackling the problem of human pose estimation mainly adopt the techniques of pictorial structures \cite{fischler1973representation} or graphical models\cite{chen2014articulated}.
@@ -53,7 +53,7 @@ Nowadays there exists two main topics in human pose estimation: single person po
 \end{figure}
 
 \subsection{Single person Pose Estimation}
-The works based on CNN usually adopts two methods: regress the coordinates of keypoints directly and regress the cofidence score map of keypoints. Toshev \textit{et al.} firstly introduce
+The works based on CNN usually adopt two methods: regress the coordinates of keypoints directly and regress the cofidence score map of keypoints. Toshev \textit{et al.} firstly introduce
 CNN to solve pose estimation problem in the work of DeepPose\cite{toshev2014deeppose}, which proposes a cascade of CNN keypoint coordinate regressors to deal with pose estimation. Tompson \textit{et al.}\cite{tompson2014joint}
 attempt to solve the problem by predicting heatmaps of keypoints using CNN and graphical models.
 Using heatmap as the supervised label can provide more robust information, hence recently most of work focus on predicting heatmaps.
@@ -76,14 +76,14 @@ Zhe Cao \textit{et al.}\cite{cao2016realtime} map the relationship between keypo
 Newell \textit{et al.}\cite{newell2017associative} simultaneously produce score maps and pixel-wise embedding to group the candidate keypoints to different people to get final multi-person pose estimation.
 
 \subsubsection{Top-down Approaches}
-Top-down approaches\cite{huang2017coarse, papandreou2017towards, he2017mask} interpret the process of detecting keypoints as a twostage pipeline, that is, firstly locate and crop all persons from image,
+Top-down approaches\cite{huang2017coarse, papandreou2017towards, he2017mask} interpret the process of detecting keypoints as a two-stage pipeline, that is, firstly locate and crop all persons from image,
 and then solve the single person pose estimation problem in the cropped person patches.
 Papandreou \textit{et al.}\cite{papandreou2017towards} predict both heatmaps and offsets of the points on the heatmaps to the ground truth location, and then uses the heatmaps with offsets to obtain the final predicted location of keypoints.
 Mask-RCNN\cite{he2017mask} predicts human bounding boxes first and then crops the feature map of the corresponding human bounding box to predict human keypoints.
 If top-down approach is utilized for multi-person pose estimation, a human detector as well as single person pose estimator is important in order to obtain a good performance.
 
 \subsubsection{Human detection}
-Human detection approaches are mainly guided by the RCNN family\cite{girshick2014rich, girshick2015fast, ren2015faster}, the upto-date detectors of which are\cite{lin2017feature, he2017mask}.
+Human detection approaches are mainly guided by the RCNN family\cite{girshick2014rich, girshick2015fast, ren2015faster}, the up-to-date detectors of which are\cite{lin2017feature, he2017mask}.
 These detection approaches are composed of two-stage in general.
 First generate boxes proposals based on default anchors, and then crop from the feature map and further refine the proposals to get the final boxes via R-CNN network.
 
