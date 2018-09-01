@@ -20,7 +20,36 @@
 %% approved by the Free Software Foundation
 %%
 \chapter{Conclusion}
+I was mainly responsible for the COCO 2018 keypoint competition during this internship.
+The time-line is like below:
+\begin{enumerate}
+  \item April $\sim$ May: Get similar to Human Pose Estimation problem and review related works and codes.
+  \item May $\sim$ June: Think that dataset is a choke point and more data is necessary. Try to generate train data using GAN\cite{goodfellow2014generative}.
+  \item June $\sim$ Mid-July: Design a novel network.
+  \item Mid-July $\sim$ Mid-August(Deadline of Competition): Try to ensemble and fine-tune hyper-parameters.
+\end{enumerate}
 
+Finally, we proposed a novel multi-stage network which can learn both normal poses and hard poses well.
+Based on the proposed algorithm, we achieved state-of-art results on the COCO keypoint benchmark, with average
+precision at $77.8\%$ mAp on the COCO test-dev dataset and $76.4\%$ on the COCO test-challenge dataset, which is a $4.8\%$ mAp
+relative improvement compared with $73.0\%$ from the COCO 2017 keypoint challenge.
+
+\textbf{Our team was invited to make a presentation in ECCV2018, September 8 - 14 in Munich, Germany}\footnote{More details about the conference can be found in https://eccv2018.org/}.
+
+Here, I want to record some feeling about this competition experience.
+There are two main points:
+\begin{enumerate}
+  \item \textbf{The hardest part is the beginning and ending period.} At the beginning, I was new to Human Pose Estimation problem totally.
+  At that time, leader requested me to do a quick review of the recent related works and make a presentation.
+  I read papers every day and studied the source codes, but improve myself rapidly.
+  In the last few weeks, all the ideas have been tried and our results on COCO benchmark have been stalled.
+  I remember clearly that I was particularly anxious every day during that time.
+  \item \textbf{Preparing the competition is totally different from doing research work.}
+  In my opinion, when doing research， we should believe that one idea is useful and stick to it.
+  But when preparing the competition, we may try many ideas and each idea has a end time point in order to avoid risk.
+  For example, throughout the whole May, I have tried using GAN to generate new train samples. However it didn't work finally.
+  So we started another attempt even though we all thought generating train data is a meaningful work. 
+\end{enumerate}
 
 
 %%% Local Variables:
